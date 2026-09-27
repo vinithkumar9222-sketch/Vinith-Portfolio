@@ -1,5 +1,6 @@
 import Image from "next/image";
 import HeroParticles from "@/components/HeroParticles";
+import ResumeDownload from "@/components/ResumeDownload";
 import { profile, stats } from "@/data/portfolio";
 
 export default function Hero() {
@@ -65,26 +66,7 @@ export default function Hero() {
                 <polyline points="12 5 19 12 12 19" />
               </svg>
             </a>
-            <a
-              href={profile.resumeUrl}
-              className="flex items-center gap-2 rounded-full border-2 border-accent bg-background px-6 py-3 text-sm font-semibold text-accent transition-colors hover:bg-blue-50"
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" y1="15" x2="12" y2="3" />
-                <path d="M21 17v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2" />
-              </svg>
-              Download Resume
-            </a>
+            <ResumeDownload />
           </div>
 
           <dl className="mt-8 grid grid-cols-3 divide-x divide-black/10">

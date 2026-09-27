@@ -3,7 +3,7 @@ export const profile = {
   title: "Business Analyst",
   tagline: "I turn business needs into clear requirements and working solutions.",
   heroDescription:
-    "Business Analyst with 1.5+ years of experience in requirements gathering, product development, testing and stakeholder management. I work closely with clients and teams to build user-focused, scalable solutions.",
+    "Business Analyst with 2.5+ years of experience in requirements gathering, product development, testing and stakeholder management. I work closely with clients and teams to build user-focused, scalable solutions.",
   bio: `I'm a Business Analyst who bridges the gap between business goals and
 technical execution. I work closely with stakeholders, engineering, and
 design to gather requirements, analyze processes, and help teams ship
@@ -12,6 +12,7 @@ solutions that actually solve the right problem.`,
   email: "vinith@zentelai.com",
   photo: "/profile.png",
   resumeUrl: "/resume.pdf",
+  resumeDocUrl: "/resume.docx",
   socials: {
     github: "https://github.com/vinithkumar9222-sketch",
     linkedin: "",
@@ -20,9 +21,9 @@ solutions that actually solve the right problem.`,
 };
 
 export const stats = [
-  { value: "1.5+", label: "Years of Experience" },
-  { value: "5+", label: "Projects Delivered" },
-  { value: "4+", label: "Clients & Partners" },
+  { value: "2.5+", label: "Years of Experience" },
+  { value: "4+", label: "Projects Delivered" },
+  { value: "2+", label: "Clients" },
 ];
 
 export type Highlight = {
