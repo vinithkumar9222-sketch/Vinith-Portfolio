@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0b1220;
+  --accent: #0d6efd;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes blob-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+.animate-blob-pulse {
+  animation: blob-pulse 7s ease-in-out infinite;
+}
+
+@keyframes shape-float-a {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(5px, -9px) scale(1.08);
+  }
+}
+
+@keyframes shape-float-b {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-7px, 7px) scale(0.93);
+  }
+}
+
+.animate-shape-float-a {
+  animation: shape-float-a 8s ease-in-out infinite;
+}
+
+.animate-shape-float-b {
+  animation: shape-float-b 10s ease-in-out infinite;
+}
+
+/*
+ * Particle grid: every dot's "home" is its own grid cell (transform: none).
+ * Trajectories (--dx/--dy/--dz/--peak-scale/--blur) are derived purely from each
+ * dot's row/col, never randomised, so the burst always folds back into the
+ * exact same grid. All dots share one animation-duration; only animation-delay
+ * differs (staggered by grid diagonal), which is what produces the one-by-one
+ * activation wave while still letting every dot land back home in lockstep
+ * for the shared hold at 75%-100% before the next loop.
+ */
+.hero-particle-wrap {
+  transition: transform 220ms ease-out;
+  will-change: transform;
+}
+
+.hero-particle {
+  position: absolute;
+  border-radius: 9999px;
+  animation-name: particle-cycle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity, filter;
+}
+
+@keyframes particle-cycle {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.5;
+    filter: blur(0px);
+  }
+  6% {
+    transform: translate3d(0, 0, 0) scale(1.6);
+    opacity: 0.95;
+    filter: blur(0px);
+  }
+  20% {
+    transform: translate3d(
+        calc(var(--dx) * 0.5),
+        calc(var(--dy) * 0.5),
+        calc(var(--dz) * 0.5)
+      )
+      scale(1.2);
+    opacity: 0.9;
+    filter: blur(calc(var(--blur) * 0.5));
+  }
+  38% {
+    transform: translate3d(var(--dx), var(--dy), var(--dz))
+      scale(var(--peak-scale));
+    opacity: 0.85;
+    filter: blur(var(--blur));
+  }
+  55% {
+    transform: translate3d(
+        calc(var(--dx) * 0.55),
+        calc(var(--dy) * 0.5 + 6px),
+        calc(var(--dz) * 0.4)
+      )
+      scale(1.05);
+    opacity: 0.65;
+    filter: blur(calc(var(--blur) * 0.4));
+  }
+  75%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.5;
+    filter: blur(0px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-particle,
+  .animate-shape-float-a,
+  .animate-shape-float-b,
+  .animate-blob-pulse {
+    animation: none;
+  }
+}
